@@ -1,0 +1,11 @@
+package com.minssam.shoppingapp.member;
+
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+public class MemberMain extends JPanel{
+	public MemberMain() {
+		setBackground(Color.BLUE);
+	}
+}

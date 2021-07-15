@@ -1,0 +1,65 @@
+package payment;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+public class PaymentUt{
+	
+		String url="jdbc:mysql://localhost:3306/doncha";
+		String user="root";
+		String pass="1234";
+	
+		Connection con =null;
+		ResultSet rs=null; 
+		PreparedStatement pstmt = null;
+		
+		
+		
+		
+		
+	public void orderConfirm() throws SQLException {
+		
+		int product_id = 1;
+		String product_name = "dummy";
+		String phone_number = "01020807670";
+		int order_count = 3;
+		int order_price =1000;
+		int revenue =3000 ;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection(url, user, pass);
+			System.out.println("드라이버 로드 성공!!");
+			
+			String sql = "insert into order_history(product_id, product_name, phone_number, order_count, order_price, revenue)";
+			sql += " values(?,?,?,?,?,?)";
+		
+		
+			pstmt = con.prepareStatement(sql);
+			// 바인드 변수값 처리
+			pstmt.setInt(1, product_id);  
+			pstmt.setString(2, product_name);// 상품명
+			pstmt.setInt(3, phone_number); //폰번
+			pstmt.setInt(4, order_count);// 수량
+			pstmt.setInt(5, order_price);// 가격
+			pstmt.setInt(6, revenue);
+
+			// 쿼리실행(DML)
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.err.println("성공");
+			} else {
+				System.out.println("실패");
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			con.close();
+		}
+
+	}
+}

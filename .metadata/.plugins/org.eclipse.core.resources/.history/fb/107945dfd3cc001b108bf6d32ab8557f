@@ -1,0 +1,119 @@
+package main;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Colorselect extends JFrame {
+
+   JPanel container, top_p, bot_p, main_p;
+
+   JButton[] bt = new JButton[7];
+
+   public Colorselect() {
+
+      Color[] corArr = { new Color(255, 0, 0), new Color(255, 128, 0), new Color(255, 255, 051),
+            new Color(15, 128, 0), new Color(0, 0, 255), new Color(000, 000, 102), new Color(102, 051, 153) };
+      container = new JPanel();
+      top_p = new JPanel();
+      bot_p = new JPanel();
+
+      main_p = new JPanel();
+
+      container.setBorder (BorderFactory.createLineBorder (Color.black));
+      top_p.setBorder (BorderFactory.createLineBorder (Color.black));
+      bot_p.setBorder (BorderFactory.createLineBorder (Color.black));
+      main_p.setBorder (BorderFactory.createLineBorder (Color.black));
+      
+      
+      container.setPreferredSize(new Dimension(900, 600));
+      top_p.setPreferredSize(new Dimension(900, 400));
+      bot_p.setPreferredSize(new Dimension(900, 150));
+
+      main_p.setBackground(Color.WHITE);
+      main_p.setPreferredSize(new Dimension(600, 300));
+
+      for (int i = 0; i < 7; i++) {
+         bt[i] = new JButton();
+         bt[i].setBackground(corArr[i]);
+         bt[i].setPreferredSize(new Dimension(80, 50));
+
+         bot_p.add(bt[i]);
+      }
+
+    
+
+      bt[0].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[0]);
+         }
+      });
+      bt[1].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[1]);
+         }
+      });
+      bt[2].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[2]);
+         }
+      });
+      bt[3].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[3]);
+         }
+      });
+      bt[4].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[4]);
+         }
+      });
+      bt[5].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[5]);
+         }
+      });
+      bt[6].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            main_p.setBackground(corArr[6]);
+         }
+      });
+      top_p.add(main_p);
+
+      container.add(top_p, BorderLayout.NORTH);
+      container.add(bot_p, BorderLayout.SOUTH);
+
+      add(container);
+      
+      
+      setBounds(0, 50, 900, 600);
+      setVisible(true);
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+   }
+
+   public static void main(String[] args) {
+      new Colorselect();
+   }
+
+}

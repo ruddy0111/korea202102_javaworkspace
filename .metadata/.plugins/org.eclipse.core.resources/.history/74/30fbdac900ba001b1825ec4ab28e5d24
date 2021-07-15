@@ -1,0 +1,7 @@
+package com.minssam.shoppingapp.model.domain;
+
+//이 객체는 로직을 작성하기 위한 용도가 아니라, Topcategory테이블의 레코드를 담기 위한 객체이다. = VO(value Object)
+//js의 JSON의 역할과 같다.
+public class Topcategory {
+
+}

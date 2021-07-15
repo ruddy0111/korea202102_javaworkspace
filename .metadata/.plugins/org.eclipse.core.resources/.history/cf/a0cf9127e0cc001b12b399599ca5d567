@@ -1,0 +1,137 @@
+package user;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class Join extends JFrame{
+	Join join;
+   JTextField p_id;
+   JTextField t_pass;
+   JTextField t_pass_check;
+   JTextField t_name;
+   JButton bt_join;
+   
+   public Join() {
+      //생성
+      p_id = new JTextField("ID 입력");
+      t_pass = new JTextField("비밀번호 입력");
+      t_pass_check = new JTextField("비밀번호 확인");
+      t_name = new JTextField("이름 입력");
+      bt_join = new JButton("등록");
+      
+      //스타일 및 레이아웃
+      Dimension d = new Dimension(250, 40);
+      setLayout(new FlowLayout());
+      
+      p_id.setPreferredSize(d);
+      p_id.setForeground(Color.LIGHT_GRAY);
+      p_id.addFocusListener(new FocusListener() {
+         public void focusLost(FocusEvent e) {
+            if(p_id.getText().equals("")) {
+               p_id.setText("ID 입력");
+               p_id.setForeground(Color.LIGHT_GRAY);
+            }
+         }
+         
+         public void focusGained(FocusEvent e) {
+            if(p_id.getText().equals("ID 입력")) {
+               p_id.setText("");
+               p_id.setForeground(Color.BLACK);
+            }
+         }
+      });
+      
+      t_pass.setPreferredSize(d);
+      t_pass.setForeground(Color.LIGHT_GRAY);
+      t_pass.addFocusListener(new FocusListener() {
+         public void focusLost(FocusEvent e) {
+            if(t_pass.getText().equals("")) {
+               t_pass.setText("비밀번호 입력");
+               t_pass.setForeground(Color.LIGHT_GRAY);
+            }
+         }
+         
+         public void focusGained(FocusEvent e) {
+            if(t_pass.getText().equals("비밀번호 입력")) {
+               t_pass.setText("");
+               t_pass.setForeground(Color.BLACK);
+            }
+         }
+      });
+      
+      t_pass_check.setPreferredSize(d);
+      t_pass_check.setForeground(Color.LIGHT_GRAY);
+      t_pass_check.addFocusListener(new FocusListener() {
+         public void focusLost(FocusEvent e) {
+            if(t_pass_check.getText().equals("")) {
+               t_pass_check.setText("비밀번호 확인");
+               t_pass_check.setForeground(Color.LIGHT_GRAY);
+            }
+         }
+         
+         public void focusGained(FocusEvent e) {
+            if(t_pass_check.getText().equals("비밀번호 확인")) {
+               t_pass_check.setText("");
+               t_pass_check.setForeground(Color.BLACK);
+            }
+         }
+      });
+      
+      t_name.setPreferredSize(d);
+      t_name.setForeground(Color.LIGHT_GRAY);
+      t_name.addFocusListener(new FocusListener() {
+         public void focusLost(FocusEvent e) {
+            if(t_name.getText().equals("")) {
+               t_name.setText("이름 입력");
+               t_name.setForeground(Color.LIGHT_GRAY);
+            }
+         }
+         
+         public void focusGained(FocusEvent e) {
+            if(t_name.getText().equals("이름 입력")) {
+               t_name.setText("");
+               t_name.setForeground(Color.BLACK);
+            }
+         }
+      });
+      
+      bt_join.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            if(p_id.getText().isEmpty() || p_id.getText().equals("ID 입력")) {
+               JOptionPane.showMessageDialog(join, "ID를 입력해주세요");
+            }else if(t_pass.getText().isEmpty() || t_pass.getText().equals("비밀번호 입력")){
+               JOptionPane.showMessageDialog(join, "비밀번호를 입력해주세요");
+            }else if(!t_pass_check.getText().equals(t_pass.getText())){
+               JOptionPane.showMessageDialog(join, "비밀번호와 일치하지 않습니다");
+            }else if(t_name.getText().isEmpty() || t_name.getText().equals("이름 입력")){
+               JOptionPane.showMessageDialog(join, "이름을 입력해주세요");
+            }
+         }
+      });
+      
+      add(p_id);
+      add(t_pass);
+      add(t_pass_check);
+      add(t_name);
+      add(bt_join);
+      
+      //보이기
+      setVisible(true);
+      setBounds(100, 100, 350, 300);
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+   }
+   
+   public static void main(String[] ajoins) {
+      new Join();
+   }
+}

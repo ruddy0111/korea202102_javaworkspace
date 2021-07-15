@@ -1,0 +1,264 @@
+package user;
+
+
+
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+
+
+public class Join extends JFrame{
+
+	 JTextField  t_join = new JTextField ();
+	 JTextField t_id = new JTextField("id");
+	 JPasswordField pw_pw = new JPasswordField();
+	 JPasswordField pw_pw2 = new JPasswordField();
+	 JTextField nameText = new JTextField("이름");
+
+	 JButton bt_join = new JButton("등록");
+
+	 public Join() {
+		setTitle("회원가입");
+		
+		p_join.add(p_id);
+		p_join.add(p_pw);
+		p_join.add(p_pw2);
+		p_join.add(nameText);
+		add(p_join);
+
+		setSize(300,500);				
+		FocusEvent();
+		checkValue();
+
+	}
+
+	
+
+	 //텍스트 필드에 있는 값을 체크하고 지우기 위한 메소드
+
+	 private void FocusEvent() {
+
+			idText.addFocusListener(new FocusListener() {
+
+				public void focusLost(FocusEvent e) {				
+
+					if(idText.getText().trim().length()==0) {
+
+						idText.setText("아이디");
+
+					}
+
+				}
+
+				public void focusGained(FocusEvent e) {				
+
+					if(idText.getText().trim().equals("아이디")) {
+
+						idText.setText("");
+
+					}				
+
+				}
+
+			});
+
+			
+
+			nameText.addFocusListener(new FocusListener() {
+
+				public void focusLost(FocusEvent e) {
+
+					if(nameText.getText().trim().length()==0) {
+
+						nameText.setText("이름");
+
+					}
+
+				}
+
+				
+
+				public void focusGained(FocusEvent e) {			
+
+					if(nameText.getText().trim().equals("이름")) {
+
+						nameText.setText("");
+
+					}
+
+				}
+
+			});
+
+
+	
+	 private void checkValue(){
+
+		 signUpbtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				if(idText.getText().trim().length()==0 || idText.getText().trim().equals("아이디")) {
+
+					JOptionPane.showMessageDialog(null, "아이디를 입력해 주세요.", "아이디 입력", JOptionPane.WARNING_MESSAGE);
+
+					idText.grabFocus();
+
+					return;
+
+				}
+
+				
+
+				if(pwText.getText().trim().length()==0) {
+
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력해 주세요.", "비밀번호 입력", JOptionPane.WARNING_MESSAGE);
+
+					pwText.grabFocus();
+
+					return;
+
+				}
+
+				
+
+				if(pwCheckText.getText().trim().length()==0) {
+
+					JOptionPane.showMessageDialog(null, "비밀번호 확인을 입력해 주세요.", "비밀번호 확인 입력", JOptionPane.WARNING_MESSAGE);
+
+					pwCheckText.grabFocus();
+
+					return;
+
+				}
+
+				
+
+				if(!(pwText.getText().trim().equals(pwCheckText.getText().trim()))) {
+
+					JOptionPane.showMessageDialog(null, "비밀번호가 같지 않습니다.!!", "비밀번호 확인", JOptionPane.WARNING_MESSAGE);
+
+					return;
+
+				}
+
+				
+
+				if(nameText.getText().trim().length()==0 || nameText.getText().trim().equals("이름")) {
+
+					JOptionPane.showMessageDialog(null, "이름을 입력해 주세요.", "이름 입력", JOptionPane.WARNING_MESSAGE);
+
+					nameText.grabFocus();
+
+					return;
+
+				}
+
+				//여기까지 왔다면 모든 값을 입력하고 선택하는 것이 완료되었으니 회원가입 과정이 완료.
+
+				membershipProgress = true;
+
+								
+
+				setVisible(false);
+
+			}
+
+		});
+
+	 }
+
+	
+
+	 //메인 클래스에서 다이얼로그 회원가입 창 데이터를 가져오기 위한 get 메소드 선언
+
+	public String getIdText() {
+
+		return idText.getText().trim();
+
+	}
+
+
+
+	public String getPwText() {
+
+		return pwText.getText().trim();
+
+	}
+
+
+
+	public String getPwCheckText() {
+
+		return pwCheckText.getText().trim();
+
+	}
+
+
+
+	public String getNameText() {
+
+		return nameText.getText().trim();
+
+	}
+
+
+
+	public String getBirthYearText() {
+
+		return birthYearText.getText().trim();
+
+	}
+
+
+
+	public String getBirthMonthContent() {
+
+		return birthMonthList.getSelectedItem().toString();
+
+	}
+
+
+
+	public String getBirthDayText() {
+
+		return birthDayText.getText();
+
+	}
+
+
+
+	public String getPhoneNumberText() {
+
+		return phoneNumberText.getText().trim();
+
+	}
+
+
+
+	public boolean memberCheck() {
+
+		return membershipProgress;
+
+	}
+
+	
+
+	
+
+	
+
+}

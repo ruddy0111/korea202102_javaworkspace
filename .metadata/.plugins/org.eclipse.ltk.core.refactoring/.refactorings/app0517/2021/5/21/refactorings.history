@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;app0517/res/자바13일차&apos; to &apos;자바13일차.txt&apos;" description="Rename resource &apos;자바13일차&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/자바13일차" name="자바13일차.txt" stamp="1621211180627" updateReferences="true"/>
+</session>

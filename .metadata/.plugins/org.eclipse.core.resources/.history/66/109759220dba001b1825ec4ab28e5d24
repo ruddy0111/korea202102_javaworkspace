@@ -1,0 +1,5 @@
+package com.minssam.shoppingapp.model.domain;
+
+public class Subcategory {
+
+}

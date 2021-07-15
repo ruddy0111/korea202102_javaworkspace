@@ -1,0 +1,18 @@
+package com.minssam.shoppingapp.utill;
+
+public class FileManager {
+	
+	public static String getExtend(String path) {
+		int lastIndex = path.lastIndexOf("\\");
+		//String str = "korea";
+		//System.out.println(str.subSequence(0, str.length()));
+		String filename = path.substring(lastIndex+1, path.length());
+		String ext = filename.substring(filename.lastIndexOf(".")+1, filename.length());
+		
+		return ext;
+	}
+	public static void main(String[] args) {
+		String result = getExtend("D:\\korea202102_jsworkspace\\images\\free\\jelly.jpg");
+		System.out.println(result);
+	}
+}

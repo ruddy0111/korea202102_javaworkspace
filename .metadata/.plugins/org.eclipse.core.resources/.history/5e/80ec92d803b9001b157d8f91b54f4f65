@@ -1,0 +1,5 @@
+module app0520 {
+	exports db.table;
+
+	requires java.desktop;
+}

@@ -1,0 +1,8 @@
+package com.minssam.shoppingapp.main;
+
+import javax.swing.JPanel;
+
+//모든 페이지의 부모
+public class Page extends JPanel{
+
+}

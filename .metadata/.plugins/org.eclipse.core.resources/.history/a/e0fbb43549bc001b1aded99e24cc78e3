@@ -1,0 +1,8 @@
+drop table shoppingapp.product;
+
+create  table shoppingapp.product (
+	product_id int primary key auto_increment
+	, subcategory_id int
+	, product 
+
+)

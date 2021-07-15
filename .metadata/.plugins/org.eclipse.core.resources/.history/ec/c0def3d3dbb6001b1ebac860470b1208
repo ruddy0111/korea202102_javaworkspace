@@ -1,0 +1,19 @@
+package app0517.db;
+
+import java.sql.DriverManager;
+
+//Mysql DB에 레코드  넣어보기
+//자바 언어로 데이터  베이스를  연동하는  기술을 가리켜 JDBC라 ㅎ ㅏㄴ다.
+public class DBInsert {
+	public static void main(String[] args) {
+	//모든 ~~DB 작업 수행은  절차가  동일하다.
+		//1) DB접속
+		String url;
+		String user;
+		String pass;
+		DriverManager.getConnection(url, user,  pass);
+		//2) 쿼리수행
+		
+		//3) 접속 끊기
+	}
+}

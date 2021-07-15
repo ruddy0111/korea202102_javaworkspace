@@ -1,0 +1,13 @@
+package db.member;
+
+import java.awt.event.WindowAdapter;
+
+/*자바에서는 이벤트 리스너의 메서드가 3개 이상 될 때는, 개발자 대신 메서드 재정의 의무를 짊어진 어댑터 클래스를 지원한다.
+ * ex)
+ * KeyListener->KeyAdapter
+ * WindowListener->WindowAdapter
+ * MouseListener->MouseAdapter
+ * */
+public class MyWindowAdapter extends WindowAdapter{
+	
+}

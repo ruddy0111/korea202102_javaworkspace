@@ -1,0 +1,9 @@
+package com.minssam.shoppingapp.customer;
+
+import java.awt.Color;
+
+public class CustomerMain extends Page{
+	public CustomerMain() {
+		setBackground(Color.GREEN);
+	}
+}

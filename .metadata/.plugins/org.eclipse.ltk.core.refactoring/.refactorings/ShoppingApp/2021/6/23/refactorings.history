@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Page.java&apos; to &apos;doncha-kiosk/src/menu&apos;&#x0D;&#x0A;- Original project: &apos;ShoppingApp&apos;&#x0D;&#x0A;- Destination element: &apos;doncha-kiosk/src/menu&apos;&#x0D;&#x0A;- Original element: &apos;com.minssam.shoppingapp.main.Page.java&apos;" description="Copy compilation unit" destination="=doncha-kiosk/src&lt;menu" element1="/src&lt;com.minssam.shoppingapp.main{Page.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1622712504635" units="1" version="1.0"/>
+</session>

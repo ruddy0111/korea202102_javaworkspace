@@ -1,0 +1,13 @@
+package app0517.db;
+
+public class DBSelect {
+	String driver;//mysql용 드라이버 경로
+	String url="jdbc:mysql://localhost:3306/javase?characterEncoding=UTF8";
+	String id;
+	String pass;
+	
+	public static void main(String[] args) {
+		new DBSelect();
+	}
+	
+}

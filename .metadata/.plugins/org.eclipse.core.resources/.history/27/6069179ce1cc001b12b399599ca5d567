@@ -1,0 +1,119 @@
+package main;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Colorselect extends JFrame {
+
+   JPanel container;
+   JPanel p_frame;//show 담을 곳
+   JPanel p_show;
+   JPanel p_select;//색상표 담을 곳
+
+   JButton[] bt = new JButton[7];
+
+   public Colorselect() {
+
+      Color[] corArr = { new Color(255, 0, 0), new Color(255, 128, 0), new Color(255, 255, 051),
+            new Color(15, 128, 0), new Color(0, 0, 255), new Color(000, 000, 102), new Color(102, 051, 153) };
+      
+      container = new JPanel();
+      p_frame = new JPanel();
+      p_show = new JPanel();
+      p_select = new JPanel();
+
+      //container.setBorder (BorderFactory.createLineBorder (Color.black));
+      container.setBackground(Color.WHITE);
+      p_frame.setBorder (BorderFactory.createLineBorder (Color.black));
+      p_frame.setBackground(Color.WHITE);
+      p_select.setBorder (BorderFactory.createLineBorder (Color.black));
+      p_select.setBackground(Color.WHITE);
+      p_show.setBorder (BorderFactory.createLineBorder (Color.black));
+      p_show.setBackground(Color.WHITE);
+      
+      container.setPreferredSize(new Dimension(1000, 600));
+      p_frame.setPreferredSize(new Dimension(1000, 500));
+      p_select.setPreferredSize(new Dimension(1000, 300));
+      p_show.setPreferredSize(new Dimension(750, 490));
+
+      for (int i = 0; i < 7; i++) {
+         bt[i] = new JButton();
+         bt[i].setBackground(corArr[i]);
+         bt[i].setPreferredSize(new Dimension(120, 120));
+         p_select.add(bt[i]);
+      }
+      bt[0].addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[0]);
+         }
+      });
+      bt[1].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[1]);
+         }
+      });
+      bt[2].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[2]);
+         }
+      });
+      bt[3].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[3]);
+         }
+      });
+      bt[4].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[4]);
+         }
+      });
+      bt[5].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[5]);
+         }
+      });
+      bt[6].addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            p_show.setBackground(corArr[6]);
+         }
+      });
+      
+      p_frame.add(p_show, BorderLayout.CENTER);
+      
+      container.add(p_frame, BorderLayout.NORTH);
+      container.add(p_select, BorderLayout.SOUTH);
+
+      add(container);
+      
+      
+      setBounds(0, 50, 1000, 700);
+      setVisible(true);
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
+   }
+
+   public static void main(String[] args) {
+      new Colorselect();
+   }
+
+}

@@ -1,0 +1,163 @@
+package db.table.model;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.table.AbstractTableModel;
+
+/*
+ * JTable이 사용할 데이터를, TableModel을 이용해서 유지보수 개선
+ * TableModel : JTable과 같은 디자인 영역에서 실제 데이터에 직접 접근하지 말고, 중간 계층을 통해 작업을 진행.
+ * -> 추후 JTable이 변경될 때 데이터를 처리하는 로직은 영향을 받지 않으므로 어플리케이션의 유지보수성 상승.
+ * TableModel은 JTable이 사용하려는 데이터를 간접적으로 사용할 수 있게 도와주는 컨트롤러*/
+public class UseModelApp extends JFrame{
+   JTable table;
+   JScrollPane scroll;
+   JTextArea area;//선택한 회원의 상세정보 출력할 영역
+   
+   String[] columnName= {"member_id","user_id","password","name","regdate"};
+//   String[][] rows = new String[3][columnName.length];
+   String[][] rows= {};
+
+   
+   
+   
+   String url="jdbc:mysql://localhost:3306/javase?characterEncording=UTF-8";
+   String user = "root";
+   String password = "1234";
+   Connection con;
+
+   public UseModelApp() {
+      table = new JTable(new AbstractTableModel() {
+         //총 레코드 수를 반환하는 메서드. JTable 이 호출.
+         public int getRowCount() {
+            return rows.length;
+         }
+         //총 컬럼 수 반환하는 메서드. JTable이 호출
+         public int getColumnCount() {
+            return columnName.length;
+         }
+         public String getColumnName(int col) {
+            return columnName[col];
+         }
+         //row, col의 좌표에 어떤 데이터가 있는지 반환하는 메서드. JTable이 호출.
+         public Object getValueAt(int row, int col) {
+            System.out.println("getvalueAt("+row+","+col+")");
+            return rows[row][col];
+         }
+      });//테이블모델 객체 이용가능
+      
+      scroll = new JScrollPane(table);
+      area = new JTextArea();
+      //스타일
+      scroll.setPreferredSize(new Dimension(600,400));
+      area.setPreferredSize(new Dimension(600,150));
+      add(scroll);
+      add(area, BorderLayout.SOUTH);
+      
+      //윈도우와 리스너 연결
+      this.addWindowListener(new WindowAdapter() {
+         @Override
+       public void windowClosing(WindowEvent e) {
+            if(con!=null) {
+	               try {
+	               con.close();
+	            } catch (SQLException e1) {
+	               e1.printStackTrace();
+	            }
+            }
+            System.exit(0);//kill process
+         }
+      });
+      setBounds(500,100,600,400);
+      setVisible(true);
+      connect();
+   }
+   public void connect() {
+      try {
+         Class.forName("com.mysql.jdbc.Driver");
+         con = DriverManager.getConnection(url, user, password);
+         if(con==null) {
+            JOptionPane.showMessageDialog(this, "MySQL 접속 실패");
+         }else {
+            getList();
+         }
+      } catch (ClassNotFoundException e) {
+         e.printStackTrace();
+      
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+   
+   public void getList() {
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      String sql = "select * from member";
+      
+      try {
+      pstmt = con.prepareStatement(sql
+            ,ResultSet.TYPE_SCROLL_INSENSITIVE
+            ,ResultSet.CONCUR_READ_ONLY);
+      rs=pstmt.executeQuery();
+      rs.last();//커서를 마지막 레코드로 보내기
+      int total = rs.getRow();
+      
+      String[][] data = new String[total][columnName.length];//empty 이차원 배열 생성
+      rs.beforeFirst();
+      
+      int index=0;
+      while(rs.next()) {
+         data[index][0] = Integer.toString(rs.getInt("member_id"));
+         data[index][1] = rs.getString("user_id");
+         data[index][2] = rs.getString("password");
+         data[index][3] = rs.getString("name");
+         data[index][4] = rs.getString("regdate");
+         index++;
+      }
+      
+      
+      //데이터 갱신
+      rows = data;
+      table.updateUI();//디자인 갱신
+      
+   } catch (SQLException e) {
+      e.printStackTrace();
+   }finally {
+	   if(rs!=null){
+			 try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}  
+	   }
+	   if(pstmt!=null){
+				 try {
+					 pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}  
+		   }
+   		}
+   }
+   
+   public static void main(String[] args) {
+      new UseModelApp();
+   }
+
+
+   
+}
